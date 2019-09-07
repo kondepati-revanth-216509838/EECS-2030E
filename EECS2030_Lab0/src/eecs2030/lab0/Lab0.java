@@ -24,7 +24,7 @@ public class Lab0 {
 	 * 
 	 * @return the maximum (most positive) value that an int can represent
 	 */
-	public static int maxInt() { //Done
+	public static int maxInt() {
 		return Integer.MAX_VALUE;
 	}
 
@@ -35,7 +35,7 @@ public class Lab0 {
 	 * @return the minimum positive value greater than zero that a double can
 	 *         represent
 	 */
-	public static double minDouble() { //Done
+	public static double minDouble() {
 		return Double.MIN_VALUE;
 	}
 
@@ -50,7 +50,7 @@ public class Lab0 {
 	 * @return the integer produced by removing the last two digits of n, or 0
 	 *         if n is less than 100
 	 */
-	public static int removeLastTwoDigits(int n) { //Done
+	public static int removeLastTwoDigits(int n) {
 		int FinalNum = 0;
 		
 		if (n >= 100) {
@@ -71,12 +71,11 @@ public class Lab0 {
 	 * @return the last two digits of n, or the last digit of n if the second
 	 *         last digit is a 0
 	 */
-	public static int lastTwoDigits(int n) { //Done
-		int RemoveExtraDigits = (n / 100) * 100;
+	public static int lastTwoDigits(int n) {
+		int last2DigitsToZero = (n / 100) * 100;
 		
-		int FinalNum = n - RemoveExtraDigits;
+		int FinalNum = n - last2DigitsToZero;
 			
-		
 		return FinalNum;
 	}
 
@@ -89,7 +88,7 @@ public class Lab0 {
 	 *            a second value
 	 * @return the average of the two values
 	 */
-	public static double avg(int a, int b) { //Done
+	public static double avg(int a, int b) {
 		double mean = ((double) a + (double) b) / 2.0;
 		
 		return mean;
@@ -114,12 +113,15 @@ public class Lab0 {
 	 * @see <a href="http://climate.weather.gc.ca/glossary_e.html#w">
 	 *      Environment and Climate Change Canada wind chill definition</a>
 	 */
-	public static double windChill(double airTemp, double windSpeed) { //Done
+	public static double windChill(double airTemp, double windSpeed) {
 		double index;
+		
 		if (airTemp <= 0 && windSpeed >= 5) {
-			index = 13.12 + (0.6215 * airTemp) + ( ( (0.3965 * airTemp) - 11.37) * Math.pow(windSpeed,0.16) );
+			index = 13.12 + (0.6215 * airTemp) + (((0.3965 * airTemp) - 11.37) * Math.pow(windSpeed,0.16));
+			
 		} else {
 			index = 0.0;
+			
 		}
 		
 		return index;
@@ -132,8 +134,9 @@ public class Lab0 {
 	 *            a value
 	 * @return true if x is odd and false otherwise
 	 */
-	public static boolean isOdd(int x) { //Done
+	public static boolean isOdd(int x) {
 		return x % 2 != 0;
+		
 	}
 
 	/**
@@ -148,12 +151,15 @@ public class Lab0 {
 	 * @return true if (x, y) is exactly on the perimeter of the unit circle,
 	 *         and false otherwise
 	 */
-	public static boolean isOnUnitCircle(double x, double y) { //Done
+	public static boolean isOnUnitCircle(double x, double y) {
 		boolean isInCircle = false;
 		
-		if (Math.pow(x, 2) + Math.pow(y, 2) == 1) { //The equation is x^2 + y^2 = 1
+		//The equation is x^2 + y^2 = 1
+		if (Math.pow(x, 2) + Math.pow(y, 2) == 1.0) { 
 			isInCircle = true;
+	
 		}
+		
 		return isInCircle;
 	}
 
@@ -170,18 +176,16 @@ public class Lab0 {
 	 *            the y-coordinate of the point
 	 * @return true if (x, y) is inside the unit square, and false otherwise
 	 */
-	public static boolean isInsideUnitSquare(double x, double y) { //Done
+	public static boolean isInsideUnitSquare(double x, double y) {
 		boolean isInsideX = x <= 1.0 && x >= 0.0;
 		boolean isInsideY = y <= 1.0 && y >= 0.0;
 		
 		boolean isItInside;
 		
 		if (isInsideX == true && isInsideY == true) {
-			
 			isItInside = true;
 			
 		} else {
-			
 			isItInside = false;
 			
 		}
@@ -202,19 +206,16 @@ public class Lab0 {
 	 *            the y-coordinate of the point
 	 * @return true if (x, y) is outside the unit square, and false otherwise
 	 */
-	public static boolean isOutsideUnitSquare(double x, double y) { //Done
-		
+	public static boolean isOutsideUnitSquare(double x, double y) {
 		boolean isOutsideX = x > 1.0 || x < 0.0;
 		boolean isOutsideY = y > 1.0 || y < 0.0;
 		
 		boolean isItOutside;
 		
 		if (isOutsideX == true || isOutsideY == true) {
-			
 			isItOutside = true;
 			
 		} else {
-			
 			isItOutside = false;
 			
 		}
@@ -237,22 +238,20 @@ public class Lab0 {
      * @throws BadBitException 
      *           if x is not a bit (has a value that is not zero and not one).
      */
-	public static int flipBit(int x) { //Done
-		
+	public static int flipBit(int x) {
 		int FinalBit;
 		
 		if (x == 0) {
-		
 			FinalBit = 1;
 		
 		} else if (x == 1) {
-		
 			FinalBit = 0;
+			
 		} else {
 			throw new BadBitException("has a value that is not zero and not one");
-		}
 			
-		
+		}
+	
         return FinalBit;
 	}
 
@@ -269,15 +268,13 @@ public class Lab0 {
 	 * @return the value 1 if x is strictly inside the given Range, and 0
 	 *         otherwise
 	 */
-	public static int contains(double x, Range range) { //Done
+	public static int contains(double x, Range range) {
 		int Value;
 		
 		if (x > range.getMinimum() && x < range.getMaximum()) {
-		
 			Value = 1;
 		
 		} else {
-		
 			Value = 0;
 		
 		}
@@ -295,24 +292,18 @@ public class Lab0 {
 	 * @return the value 0 if both Range instances have equal width; -1 if r1 is
 	 *         narrower than r2; and 1 if r1 is wider than r2
 	 */
-	public static int compareTo(Range r1, Range r2) { //Done
-		
+	public static int compareTo(Range r1, Range r2) {
 		int numReturn;
-		
 		double r1Width = r1.getMaximum() - r1.getMinimum();
-		
 		double r2Width = r2.getMaximum() - r2.getMinimum();
 		
 		if (r1Width == r2Width) {
-			
 			numReturn = 0;
 			
 		} else if (r1Width > r2Width) {
-			
 			numReturn = 1;
 			
 		} else {
-			
 			numReturn = -1;
 			
 		}
@@ -325,7 +316,7 @@ public class Lab0 {
 	 * 
 	 * @return the string equal to Lab0.COURSE_NAME
 	 */
-	public static String getCourseName() { //Done
+	public static String getCourseName() {
 		return COURSE_NAME;
 	}
 
@@ -342,8 +333,7 @@ public class Lab0 {
 	 *            a Range instance
 	 * @return a string representation of the range
 	 */
-	public static String toString(Range r) { //Done
-		
+	public static String toString(Range r) {
 		return "range from " + r.getMinimum() + " to " + r.getMaximum();
 	}
 
@@ -360,11 +350,10 @@ public class Lab0 {
 	 * @throws IllegalArgumentException
 	 *             if s is empty
 	 */
-	public static char middleChar(String s) { //Done
+	public static char middleChar(String s) {
+		int stringLength = s.length();
 		
-		int lengthString = s.length();
-		
-		double charLocation = ((double)lengthString/2.0) + 1.0;
+		double charLocation = ((double)stringLength/2.0) + 1.0;
 		
 		char midChar = s.charAt((int)charLocation - 1);
 		
@@ -397,19 +386,23 @@ public class Lab0 {
 	 * @return the string formed by alternating the case of the characters in s
 	 */
 	public static String alternatingCaps(String s) {
+		char letterPiece;
 		String Final = "";
-		char character;
 		
-		for (int i = 0; i < s.length(); i ++) {
+		
+		for (int i = 0; i < s.length(); i ++) { 
 			
-			if (i % 2 == 0) {
-				character = s.toLowerCase().charAt(i);
-			} else {
-				character = s.toUpperCase().charAt(i);
+			if (i % 2 == 0) { 
+				letterPiece = s.toLowerCase().charAt(i);
+				
+			} else { 
+				letterPiece = s.toUpperCase().charAt(i);
+				
 			}
 			
-			Final += character;
+			Final += letterPiece;
 		}
+		
 		
 		return Final;
 	}
