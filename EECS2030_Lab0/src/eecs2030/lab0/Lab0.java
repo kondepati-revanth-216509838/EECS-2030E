@@ -71,8 +71,10 @@ public class Lab0 {
 	 * @return the last two digits of n, or the last digit of n if the second
 	 *         last digit is a 0
 	 */
-	public static int lastTwoDigits(int n) {
-		int FinalNum = n - (removeLastTwoDigits(n) * 100);
+	public static int lastTwoDigits(int n) { //Done
+		int RemoveExtraDigits = (n / 100) * 100;
+		
+		int FinalNum = n - RemoveExtraDigits;
 			
 		
 		return FinalNum;
@@ -112,9 +114,9 @@ public class Lab0 {
 	 * @see <a href="http://climate.weather.gc.ca/glossary_e.html#w">
 	 *      Environment and Climate Change Canada wind chill definition</a>
 	 */
-	public static double windChill(double airTemp, double windSpeed) {
+	public static double windChill(double airTemp, double windSpeed) { //Done
 		double index;
-		if (airTemp <= 0 && windSpeed >= 5) { //Done
+		if (airTemp <= 0 && windSpeed >= 5) {
 			index = 13.12 + (0.6215 * airTemp) + ( ( (0.3965 * airTemp) - 11.37) * Math.pow(windSpeed,0.16) );
 		} else {
 			index = 0.0;
@@ -395,8 +397,21 @@ public class Lab0 {
 	 * @return the string formed by alternating the case of the characters in s
 	 */
 	public static String alternatingCaps(String s) {
+		String Final = "";
+		char character;
 		
-		return "";
+		for (int i = 0; i < s.length(); i ++) {
+			
+			if (i % 2 == 0) {
+				character = s.toLowerCase().charAt(i);
+			} else {
+				character = s.toUpperCase().charAt(i);
+			}
+			
+			Final += character;
+		}
+		
+		return Final;
 	}
 
 }
