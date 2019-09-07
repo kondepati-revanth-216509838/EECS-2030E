@@ -72,18 +72,9 @@ public class Lab0 {
 	 *         last digit is a 0
 	 */
 	public static int lastTwoDigits(int n) {
-		int FinalNum = 0;
+		int FinalNum = n - (removeLastTwoDigits(n) * 100);
+			
 		
-		if (n >= 100) {
-			FinalNum = n/100;
-			FinalNum *= 100;
-			FinalNum = n - FinalNum;
-			
-			if (FinalNum % 10 == 0) {
-				FinalNum *= 0.1;
-			}
-			
-		}
 		return FinalNum;
 	}
 
@@ -245,15 +236,18 @@ public class Lab0 {
      *           if x is not a bit (has a value that is not zero and not one).
      */
 	public static int flipBit(int x) { //Done
+		
 		int FinalBit;
 		
 		if (x == 0) {
 		
 			FinalBit = 1;
 		
-		} else {
+		} else if (x == 1) {
 		
 			FinalBit = 0;
+		} else {
+			throw new BadBitException("has a value that is not zero and not one");
 		}
 			
 		
@@ -276,7 +270,7 @@ public class Lab0 {
 	public static int contains(double x, Range range) { //Done
 		int Value;
 		
-		if (x >= range.getMinimum() && x <= range.getMaximum()) {
+		if (x > range.getMinimum() && x < range.getMaximum()) {
 		
 			Value = 1;
 		
