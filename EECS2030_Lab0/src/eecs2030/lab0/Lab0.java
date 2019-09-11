@@ -51,13 +51,9 @@ public class Lab0 {
 	 *         if n is less than 100
 	 */
 	public static int removeLastTwoDigits(int n) {
-		int FinalNum = 0;
-		
-		if (n >= 100) {
-			FinalNum = n / 100;
-		}
-		
-		return FinalNum;
+		int finalNum = n / 100;
+	
+		return finalNum;
 	}
 
 	/**
@@ -74,9 +70,9 @@ public class Lab0 {
 	public static int lastTwoDigits(int n) {
 		int last2DigitsToZero = (n / 100) * 100;
 		
-		int FinalNum = n - last2DigitsToZero;
+		int finalNum = n - last2DigitsToZero;
 			
-		return FinalNum;
+		return finalNum;
 	}
 
 	/**
@@ -117,7 +113,7 @@ public class Lab0 {
 		double index;
 		
 		if (airTemp <= 0 && windSpeed >= 5) {
-			index = 13.12 + (0.6215 * airTemp) + (((0.3965 * airTemp) - 11.37) * Math.pow(windSpeed,0.16));
+			index = 13.12 + (0.6215 * airTemp) + (((0.3965 * airTemp) - 11.37) * Math.pow(windSpeed , 0.16));
 			
 		} else {
 			index = 0.0;
@@ -155,7 +151,7 @@ public class Lab0 {
 		boolean isInCircle = false;
 		
 		//The equation is x^2 + y^2 = 1
-		if (Math.pow(x, 2) + Math.pow(y, 2) == 1.0) { 
+		if (Math.pow(x , 2) + Math.pow(y , 2) == 1.0) { 
 			isInCircle = true;
 	
 		}
@@ -239,20 +235,20 @@ public class Lab0 {
      *           if x is not a bit (has a value that is not zero and not one).
      */
 	public static int flipBit(int x) {
-		int FinalBit;
+		int finalBit;
 		
 		if (x == 0) {
-			FinalBit = 1;
+			finalBit = 1;
 		
 		} else if (x == 1) {
-			FinalBit = 0;
+			finalBit = 0;
 			
 		} else {
 			throw new BadBitException("has a value that is not zero and not one");
 			
 		}
 	
-        return FinalBit;
+        return finalBit;
 	}
 
 	
@@ -269,17 +265,17 @@ public class Lab0 {
 	 *         otherwise
 	 */
 	public static int contains(double x, Range range) {
-		int Value;
+		int value;
 		
 		if (x > range.getMinimum() && x < range.getMaximum()) {
-			Value = 1;
+			value = 1;
 		
 		} else {
-			Value = 0;
+			value = 0;
 		
 		}
 		
-		return Value;
+		return value;
 	}
 
 	/**
@@ -353,9 +349,9 @@ public class Lab0 {
 	public static char middleChar(String s) {
 		int stringLength = s.length();
 		
-		double charLocation = ((double)stringLength/2.0) + 1.0;
+		double charLocation = ((double) stringLength / 2.0) + 1.0;
 		
-		char midChar = s.charAt((int)charLocation - 1);
+		char midChar = s.charAt((int) charLocation - 1);
 		
 		return midChar;
 	}
@@ -387,10 +383,10 @@ public class Lab0 {
 	 */
 	public static String alternatingCaps(String s) {
 		char letterPiece;
-		String Final = "";
+		String result = "";
 		
 		
-		for (int i = 0; i < s.length(); i ++) { 
+		for (int i = 0; i < s.length(); i++) { 
 			
 			if (i % 2 == 0) { 
 				letterPiece = s.toLowerCase().charAt(i);
@@ -400,11 +396,11 @@ public class Lab0 {
 				
 			}
 			
-			Final += letterPiece;
+			result += letterPiece;
 		}
 		
 		
-		return Final;
+		return result;
 	}
 
 }
