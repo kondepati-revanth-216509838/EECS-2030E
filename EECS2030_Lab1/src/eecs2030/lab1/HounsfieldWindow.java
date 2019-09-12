@@ -37,29 +37,8 @@ package eecs2030.lab1;
 public class HounsfieldWindow {
 	private int level, width;
 	
-	private int lo = level - (width / 2), hi = level + (width / 2);
+	private double lo = this.level - (width / 2), hi = this.level + (width / 2);
 	
-	
-	
-	
-	public HounsfieldWindow() {
-		
-	}
-	
-	public static void checkWidth(int width) {
-		if (width < 1) {
-			throw new IllegalArgumentException("Width value can't be less than 1");
-		}
-	}
-	
-	public HounsfieldWindow(int level, int width) {
-		this.level = level;
-		checkWidth(width);
-		this.width = width;
-		
-		lo = this.level - (this.width / 2);
-		hi = this.level + (this.width / 2);
-	}
 	public int getLevel() {
 		return this.level;
 	}
@@ -70,34 +49,62 @@ public class HounsfieldWindow {
 	
 	public int setLevel(int level) {
 		
-		this.level = level;
+		checkLevel(level);
 		
+		this.level = level;
 		return this.level;
 	}
 	
 	public int setWidth(int width) {
-		checkWidth(width);
-		this.width = width;
 		
+		checkWidth(width);
+		
+		this.width = width;
 		return this.width;
 	}
-
+	
+	public HounsfieldWindow() {
+		this.level = 0;
+		this.width = 400;
+	}
+	
+	public HounsfieldWindow(int level, int width) {
+		checkWidth(width);
+		checkLevel(level);
+		
+		this.level = level;
+		this.width = width;
+	}
 	
 	public double map(Hounsfield h) {
-		double hUnit;
+		this.lo = this.level - (width / 2);
+		this.hi = this.level + (width / 2);
 		
 		double hValue = h.get();
 		
-		if (hValue >= lo && hValue <= hi) {
-		hUnit = (h.get() - (double)this.lo) / (double)this.width;
-		} else if (hValue <= lo) {
-			hUnit = 0.0;
-		} else if (hValue >= hi) {
-			hUnit = 1.0;
+		double value;
+		
+		if (hValue >= this.lo && hValue <= this.hi) {
+			value = (hValue - (double)this.lo) / (double)this.width;
+		} else if (hValue < this.lo) {
+			value = 0.0;
+		} else  if (hValue > this.hi) {
+			value = 1.0;
 		} else {
-			throw new IllegalArgumentException("Bullshit");
+			throw new IllegalArgumentException("No idea");
 		}
-		return hUnit;
+		return value;
+	}
+	
+	public static void checkWidth(int width) {
+		if (width < 1) {
+			throw new IllegalArgumentException("The given width is less than 1");
+		}
+	}
+	public static void checkLevel(int level) {
+		if (level < Hounsfield.MIN_VALUE || level > Hounsfield.MAX_VALUE) {
+			throw new IllegalArgumentException("The level is more/less than Hounsfield Value");
+		}
 	}
 	
 }
