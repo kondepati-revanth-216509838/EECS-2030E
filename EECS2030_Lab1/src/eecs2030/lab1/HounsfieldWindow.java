@@ -32,9 +32,72 @@ package eecs2030.lab1;
  * 
  *
  */
+
+
 public class HounsfieldWindow {
+	private int level, width;
+	
+	private int lo = level - (width / 2), hi = level + (width / 2);
+	
+	
+	
+	
+	public HounsfieldWindow() {
+		
+	}
+	
+	public static void checkWidth(int width) {
+		if (width < 1) {
+			throw new IllegalArgumentException("Width value can't be less than 1");
+		}
+	}
+	
+	public HounsfieldWindow(int level, int width) {
+		this.level = level;
+		checkWidth(width);
+		this.width = width;
+		
+		lo = this.level - (this.width / 2);
+		hi = this.level + (this.width / 2);
+	}
+	public int getLevel() {
+		return this.level;
+	}
+	
+	public int getWidth() {
+		return this.width;
+	}
+	
+	public int setLevel(int level) {
+		
+		this.level = level;
+		
+		return this.level;
+	}
+	
+	public int setWidth(int width) {
+		checkWidth(width);
+		this.width = width;
+		
+		return this.width;
+	}
 
 	
-	
+	public double map(Hounsfield h) {
+		double hUnit;
+		
+		double hValue = h.get();
+		
+		if (hValue >= lo && hValue <= hi) {
+		hUnit = (h.get() - (double)this.lo) / (double)this.width;
+		} else if (hValue <= lo) {
+			hUnit = 0.0;
+		} else if (hValue >= hi) {
+			hUnit = 1.0;
+		} else {
+			throw new IllegalArgumentException("Bullshit");
+		}
+		return hUnit;
+	}
 	
 }
