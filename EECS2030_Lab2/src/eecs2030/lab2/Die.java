@@ -127,13 +127,11 @@ public class Die implements Comparable<Die> {
 		
 		Die piece = (Die) obj;
 		
-		if (piece.faces.equals(this.faces)) {
-			if (this.value() == piece.value()) {
-				return true;
-			}
-			return false;
-		} 
+		if (piece.faces.equals(this.faces) && this.value() == piece.value()) {
 			return true;
+		}
+		
+		return false;
 		
 	}
 	
