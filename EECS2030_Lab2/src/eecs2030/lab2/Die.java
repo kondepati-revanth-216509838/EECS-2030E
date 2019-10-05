@@ -26,12 +26,12 @@ public class Die implements Comparable<Die> {
 	/**
 	 * The array of face values.
 	 */
-	private int[] faces;
+	private int[] faces = {1,2,3,4,5,6};
 		
 	/**
 	 * The current value of the die.
 	 */
-	private int value;
+	private int value = 1;
 	
 	/**
 	 * The number of faces on a die.
@@ -45,9 +45,8 @@ public class Die implements Comparable<Die> {
 	 */
 	
 	public Die() {
-		
+
 	}
-	
 
 	private static boolean isInAscendingOrder(int[] a) {
 		for (int i = 1; i < a.length; i++) {
@@ -104,7 +103,12 @@ public class Die implements Comparable<Die> {
 	
 	@Override
 	public int compareTo(Die other) {
-		
+		if (this.value == other.value) {
+			return 0;
+		} else if (this.value > other.value) {
+			return 1;
+		} 
+			return -1;
 	}
 	
 
@@ -112,6 +116,24 @@ public class Die implements Comparable<Die> {
 	public boolean equals(Object obj) {
 		// The method Arrays.equals may be useful for helping
 		// to implement this method.
+		
+		if (obj == null) {
+			return false;
+		}
+		
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Die piece = (Die) obj;
+		
+		if (piece.faces.equals(this.faces)) {
+			if (this.value() == piece.value()) {
+				return true;
+			}
+			return false;
+		} 
+			return true;
 		
 	}
 	

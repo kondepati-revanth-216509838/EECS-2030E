@@ -70,24 +70,70 @@ public class Domino implements Comparable<Domino> {
 	
 	
 	public int getSmallerValue() {
+		if (this.val1 < this.val2) {
+			return this.val1;
+		}
 		
+		return this.val2;
 	}
 
 	
 	public int getLargerValue() {
+		if (this.val1 > this.val2) {
+			return this.val1;
+		}
 		
+		return this.val2;
 	}
 
 	
 	@Override
 	public int compareTo(Domino other) {
+		if (other.equals(this)) {
+			return 0;
+		}
 		
+		if (other.getSmallerValue() < this.getSmallerValue()) {
+			return 1;
+		} else if (other.getSmallerValue() > this.getSmallerValue()) {
+			return -1;
+		} else {
+			
+			if (other.getLargerValue() < this.getLargerValue()) {
+				return 1;
+			} else if (other.getLargerValue() > this.getLargerValue()) {
+				return -1;
+			} else {
+				return 0;
+			}
+			
+		}
 	}
 	
 
 	@Override
 	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
 		
+		if (this == obj) {
+			return true;
+		}
+		
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		 
+		Domino piece = (Domino) obj;
+		
+		if (piece.val1 == this.val1 && piece.val2 == this.val2) {
+			return true;
+		} else if (piece.val1 == this.val2 && piece.val2 == this.val1) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 
