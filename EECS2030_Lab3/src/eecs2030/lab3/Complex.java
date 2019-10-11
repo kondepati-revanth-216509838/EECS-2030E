@@ -147,10 +147,7 @@ public final class Complex {
 	 * @return the magnitude of this complex number.
 	 */
 	public double mag() {
-		
-		double sqMag = Math.sqrt((this.real * this.real) + (this.im * this.im));
-		
-		return Math.abs(sqMag);
+		return Math.hypot(this.real, this.im);
 	}
 
 	/**
@@ -277,6 +274,10 @@ public final class Complex {
 		String t = s.trim();
 		List<String> parts = Arrays.asList(t.split("\\s+"));
 		
+		if (parts.size() != 3) {
+			throw new IllegalArgumentException ("Invalid info");
+		}
+		
 		// split splits the string s by looking for spaces in s.
 		// If s is a string that might be interpreted as a complex number
 		// then parts will be a list having 3 elements. The first
@@ -287,26 +288,52 @@ public final class Complex {
 		// To complete the implementation of this method you need
 		// to do the following:
 		//
-		// -check if parts has 3 elements
-		// -check if the second element of parts is "+" or "-"
+		// -check if parts has 3 elements Done
+		
+		// -check if the second element of parts is "+" or "-" Done
+		
 		// -check if the third element of parts ends with an "i"
+		
 		// -if any of the 3 checks are false then s isn't a complex number
 		//  and you should throw an exception
+		
 		// -if all of the 3 checks are true then s might a complex number
+		
 		// -try to convert the first element of parts to a double value
 		//  (use Double.valueOf); this might fail in which case s isn't
 		//  a complex number
+		
 		// -remove the 'i' from the third element of parts and try
 		//  to convert the resulting string to a double value
 	    //  (use Double.valueOf); this might fail in which case s isn't
 		//  a complex number
+		
 		// -you now have real and imaginary parts of the complex number
 		//  but you still have to account for the "+" or "-" which
 		//  is stored as the second element of parts
+		
 		// -once you account for the sign, you can return the correct
 		//  complex number
 		
 		
+		if (!parts.get(1).equals("+") && !parts.get(1).equals("-")) {
+			throw new IllegalArgumentException ("Sign doesn't exist");
+		}
+		
+	
+		if (parts.get(2).indexOf('i') < 0) {
+			throw new IllegalArgumentException ("i doesn't exist");
+		}
+		
+		
+		double real = Double.valueOf(parts.get(0));
+		double im = Double.valueOf(parts.get(2).substring(0,parts.get(2).indexOf('i')));
+		
+		if (parts.get(1).equals("-")) {
+			im *= -1;
+		}
+		
+		result = new Complex (real,im);
 		
 		return result;
 	}
