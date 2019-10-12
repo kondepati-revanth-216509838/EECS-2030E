@@ -38,25 +38,21 @@ public class MandelbrotUtil {
 		// of z is still less than or equal to 2 you should
 		// return max.
 		
-		for (int i = 0; i < max; i ++) {
+		for (int i = 0; i <= max; i ++) {
 			
-			Complex temp = z.multiply(z);
+			z = z.multiply(z).add(c);
 			
-			Complex temp2 = temp.add(c);
-			
-			z = temp2;
-			System.out.println(z.toString());
-//			if (Double.isInfinite(z.re()) || Double.isInfinite(z.im())){
-//				i = max;
-//			}
-//			numComps ++;
-			
-		}
+			double tempMag = z.mag();
 		
-		if (z.mag() <= 2) {
+			numComps ++;
 			
-			return numComps;
+			if (i == max && tempMag < 2.0) {
+				return max;
+			}
 			
+			if (tempMag > 2.0) {
+				return numComps;
+			}
 		} 
 		
 		return max;
